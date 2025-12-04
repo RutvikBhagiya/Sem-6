@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <div>
+            <div><h5>Name: </h5></div>
+            <div><input id="name" type="text" placeholder="Enter the name"/></div>
+        </div>
+        <br>
+
+        <div>
+            <div><h5>Password: </h5></div>
+            <div><input id="pass" type="password" placeholder="Enter the password"/></div>
+        </div>
+        <br>
+
+        <button onclick="submitForm()">Submit</button>
+    </body>
+    <script>
+        let submitForm = () => {
+            let name = document.querySelector("input[type='text']").value;
+            let pass = document.querySelector("input[type='password']").value;
+
+            if(name == 'rutvik' && pass == 'rutvik@123'){
+                document.writeln("Logged in");
+            }
+            else{
+                document.writeln("Not logged");
+            }
+        }
+    </script>
+</html>

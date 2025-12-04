@@ -1,0 +1,58 @@
+<html>
+    <body>
+        <div>
+            <div>
+                <div><h5>Name: </h5></div>
+                <div><input id="name" type="text" placeholder="Enter the name"/></div>
+            </div>
+            <br>
+
+            <div>
+                <div><h5>Email: </h5></div>
+                <div><input id="email" type="email" placeholder="Enter the email"/></div>
+            </div>
+            <br>
+
+            <div>
+                <div><h5>Contact No: </h5></div>
+                <div><input id="contactNo" type="number" placeholder="Enter the Contact Number"/></div>
+            </div>
+            <br>
+
+            <div>
+                <div><h5>Course: </h5></div>
+                <div>
+                    <select id="course">
+                        <option selected>B.tech</option>
+                        <option>B.B.A.</option>
+                        <option>B.Com</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+
+            <div>
+                <div><h5>Password: </h5></div>
+                <div><input id="pass" type="password" placeholder="Enter the password"/></div>
+            </div>
+            <br>
+
+            <button onclick="submitForm()">Register</button>
+        </div>
+    </body>
+    <script>
+        let submitForm = () => {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let contactNo = document.getElementById("contactNo").value;
+            let course = document.getElementById("course").value;
+            let pass = document.getElementById("pass").value;
+
+            document.writeln("Name: "+name);
+            document.writeln("Email: "+email);
+            document.writeln("Contact: "+contactNo);
+            document.writeln("Course: "+course);
+            document.writeln("Pass: "+pass);
+        }
+    </script>
+</html>

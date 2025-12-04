@@ -1,0 +1,30 @@
+<html>
+    <body></body>
+    <script>
+        let a = parseFloat(prompt("Enter the num1: "));
+        let b = parseFloat(prompt("Enter the num2: "));
+
+        let ope = prompt("Enter operation: ");
+        switch(ope){
+            case '+':
+                document.writeln(a+b);
+                break;
+            case '-':
+                document.writeln(a-b);
+                break;
+            case '*':
+                document.writeln(a*b);
+                break;
+            case '/':
+                if(b == 0){
+                    document.writeln("Dividend must not zero");
+                    break;
+                }
+                document.writeln(a/b);
+                break;
+            default:
+                document.writeln("Not a valid operation");
+        }
+        
+    </script>
+</html>
