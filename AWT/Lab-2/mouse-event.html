@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <p onclick="mouseClicked()">Click!</p>
+        <div style="height: 100px;" onmousedown="mouseDown()" onmouseout="mouseOut()">
+            This is big area
+        </div>
+    </body>
+    <script>
+        const mouseClicked = ()=>{
+            console.log("Clicked by onclick")
+        }
+        const mouseDown = ()=>{
+            console.log("Mouse downed to area")
+        }
+        const mouseOut = ()=>{
+            console.log("Mouse out the area")
+        }
+    </script>
+</html>

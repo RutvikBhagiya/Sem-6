@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <p style="background-color: gray;">
+            Its a paragraph
+        </p>
+        <div style="background-color:blueviolet;">
+            Its a div
+        </div>
+        <button onclick="changePar()">To change paragraph</button>
+        <button onclick="changeDiv()">To change div</button>
+    </body>
+    <script>
+        const changeColor = () =>{
+            let r = Math.floor(256*Math.random())
+            let g = Math.floor(256*Math.random())
+            let b = Math.floor(256*Math.random())
+            return `rgb(${r},${g},${b})`
+        }
+        const changePar = () =>{
+            let pTag = document.getElementsByTagName("p")[0]
+            pTag.style.backgroundColor = changeColor()
+        } 
+        const changeDiv = () =>{
+            let pTag = document.getElementsByTagName("div")[0]
+            divTag.style.backgroundColor = changeColor()
+        } 
+    </script>
+</html>

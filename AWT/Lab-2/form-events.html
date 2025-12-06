@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <div>
+            <div><h5>Name: </h5></div>
+                <div><input id="name" type="text" placeholder="Enter the name" onfocus="focusFunction(this)" onblur="blurFunction(this)"/></div>
+            </div>
+            <br>
+
+            <div>
+                <div><h5>Password: </h5></div>
+                <div><input id="pass" type="password" placeholder="Enter the password" onfocus="focusFunction(this)" onblur="blurFunction(this)"/></div>
+            </div>
+            <br>
+    </body>
+    <script>
+        const focusFunction = (el)=>{
+            el.style.backgroundColor = "red"
+        }
+        const blurFunction = (el)=>{
+            el.style.backgroundColor = "white"
+        }
+    </script>
+</html>

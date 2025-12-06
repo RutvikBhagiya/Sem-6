@@ -1,0 +1,50 @@
+<html>
+    <style>
+        #content{
+            font-weight: bolder;
+        }
+        #pText{
+            border: 2px solid black; 
+            width: 300px; 
+            padding: 20px; 
+            margin-bottom: 2px; 
+            transition: all 0.5s ease;
+        }
+    </style>
+    <body>
+        <div id="content" onclick="updateContent()">
+            Its a div click it to update content
+        </div>
+        <div onclick="backContent()">
+            Its a div click it to get back content
+        </div>
+        <div id="ptext">
+            It's a paragraph text with border
+        </div>
+        <button onclick="changeFunc()">Change BG and Size</button>
+        <button onclick="resetFunc()">Reset BG and Size</button>
+    </body>
+    <script>
+        const updateContent = ()=>{
+            document.getElementById("content").innerText = "";
+        }
+        const backContent = ()=>{
+            document.getElementById("content").innerText = 'Its a div click it to update content';
+        }
+        const changeFunc = ()=>{
+            let r = Math.floor(256*Math.random())
+            let g = Math.floor(256*Math.random())
+            let b = Math.floor(256*Math.random())
+            const pText = document.getElementById("ptext");
+            pText.style.backgroundColor = `rgb(${r},${g},${b})`;
+            pText.style.width = "400px";
+            pText.style.padding = "30px";
+        }
+        const resetFunc = ()=>{
+            const pText = document.getElementById("ptext");
+            pText.style.backgroundColor = "white";
+            pText.style.width = "300px";
+            pText.style.padding = "20px";
+        }
+    </script>
+</html>

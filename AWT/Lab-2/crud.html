@@ -1,0 +1,90 @@
+<html>
+    <style>
+        #error{
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+    <body>
+        <div>
+            <div>Name: <input id="addname" type="text" placeholder="Enter the name to add" onfocus="removeError()"/></div>
+            <div><button onclick="addUser()">Add</button></div>
+        </div>
+        <div>
+            <div>Index:</div>
+            <div><input id="index" type="number" placeholder="Enter the index to edit" /></div>
+            <div><input type="text" id="editname" placeholder="Name to edit"/></div>
+            <div><button onclick="editUser()">Edit</button></div>
+        </div>
+        <div>
+            <div id="error">Name not be empty</div>
+        </div>
+        <br>
+        <div>
+            
+            
+        </div>
+        <div id="content">
+
+        </div>
+    </body>
+    <script>
+        let userList = [];
+        const addUser = ()=>{
+            const userInput = document.getElementById("addname");
+            const name = userInput.value.trim();
+            if(name){
+                userList.push(name);
+                userInput.value = '';
+                showUserList();
+            }
+            else{
+                showError();
+            }
+        }
+
+        const editUser = ()=>{
+            const index = document.getElementById("index");
+            const i = index.value;
+
+            const name = document.getElementById("editname");
+            const nvalue = name.value;
+            if(i === ""){
+               alert("Index not be null");
+               return;
+            }
+            if(!nvalue){
+                showError();
+                return;
+            }
+
+            userList[i] = nvalue;
+            index.value = '';
+            name.value = '';
+            showUserList();
+        }
+
+        const deleteUser = (index)=>{
+            userList.splice(index,1);
+            showUserList();
+        }
+
+        const showUserList = ()=>{
+            document.getElementById("content").innerHTML = userList.map((user,i) => `<div>${user}<button onclick="deleteUser(${i})">Delete</button></div>`).join("");
+        }
+
+        const showError = ()=>{
+            const error = document.getElementById("error");
+            if(error){
+                error.style.display = "block";
+            }
+        }
+        const removeError = ()=>{
+            const error = document.getElementById("error");
+            if(error){
+                error.style.display = "none";
+            }
+        }
+    </script>
+</html>
