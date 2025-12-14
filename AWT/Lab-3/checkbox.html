@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h2>Check Box</h2>
+    <br>
+    <input type="checkbox" name="rollno" value="1"/><b>1</b><br>
+    <input type="checkbox" name="rollno" value="2"/><b>2</b><br>
+    <input type="checkbox" name="rollno" value="3"/><b>3</b><br>
+    <input type="checkbox" name="rollno" value="4"/><b>4</b><br>
+    <input type="checkbox" name="rollno" value="5"/><b>5</b><br>
+
+    <p id="output"></p>
+</body>
+<script>
+    const checkboxes = document.querySelectorAll('input[name="rollno"]');
+    const output = document.getElementById("output");
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", () => {
+            const selected = [...checkboxes]
+                .filter(c => c.checked)
+                .map(c => c.value)
+                .join(", ");
+
+            output.textContent = selected;
+        });
+    });
+</script>
+</html>
