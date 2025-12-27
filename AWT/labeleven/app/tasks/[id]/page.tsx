@@ -1,12 +1,16 @@
 import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 
 export default async function Task({params}:{params:{id:string}}) {
     const {id} = await params;
 
     try{
-        const [tasks]:any = await pool.query("Select * From Task Where TaskId=?",[id]);
+        const task = await prisma.task.findUnique({
+            where : {id : Number(id)}
+        })
         
-        if(tasks.length === 0 ){
+        if(!task){
             return(
                 <p style={{ color: "red" }}>
                     Task Not Exist.
@@ -14,32 +18,34 @@ export default async function Task({params}:{params:{id:string}}) {
             )
         }
 
-        const task = tasks[0];
         return(
-            <table border={1} cellPadding={10}>
-                <tbody>
-                <tr>
-                    <th>ID</th>
-                    <td>{task.TaskId}</td>
-                </tr>
-                <tr>
-                    <th>Title</th>
-                    <td>{task.TaskTitle}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{task.TaskDescription}</td>
-                </tr>
-                <tr>
-                    <th>Completed</th>
-                    <td>{task.IsCompleted}</td>
-                </tr>
-                <tr>
-                    <th>User Id</th>
-                    <td>{task.UserId}</td>
-                </tr>
-                </tbody>
-            </table>
+            <>
+                <table border={1} cellPadding={10}>
+                    <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>{task.id}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{task.title}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{task.description}</td>
+                    </tr>
+                    <tr>
+                        <th>Completed</th>
+                        <td>{task.isCompleted}</td>
+                    </tr>
+                    <tr>
+                        <th>User Id</th>
+                        <td>{task.userId}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <Link href={"/tasks"} className="m-5">Back</Link>
+            </>
         )
     }catch(error){
         console.log("Database error:",error);

@@ -1,37 +1,44 @@
 import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 
 export default async function UserId({params} : {params : {id : string}}){
     const {id} = await params;
 
     try{
-        const [users] : any = await pool.query("Select * from User Where UserId = ?",[id]);
+        const user = await prisma.user.findUnique(
+            {where:{id:Number(id)}}
+        )
     
 
-        if(users.length === 0){
+        if(!user){
             return (
                 <p style={{ color: "red" }}>
                     User not exist.
                 </p>
             );
         }
-        const user = users[0];
+
         return (
-            <table border={1} cellPadding={10}>
+            <>
+                <table border={1} cellPadding={10}>
                 <tbody>
                 <tr>
                     <th>ID</th>
-                    <td>{user.UserId}</td>
+                    <td>{user.id}</td>
                 </tr>
                 <tr>
                     <th>Name</th>
-                    <td>{user.UserName}</td>
+                    <td>{user.username}</td>
                 </tr>
                 <tr>
                     <th>Password</th>
-                    <td>{user.Password}</td>
+                    <td>{user.password}</td>
                 </tr>
                 </tbody>
-        </table>
+            </table>
+            <Link href={"/users"} className="m-5">Back</Link>
+            </>
         )
     }
     catch(error){

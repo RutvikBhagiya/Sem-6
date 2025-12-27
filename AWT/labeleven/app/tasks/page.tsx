@@ -1,10 +1,14 @@
 import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
+import { task } from "@prisma/client";
+import Link from "next/link";
 
 export default async function Tasks(){
     try{
-        const [tasks] : any = await pool.query("Select * From Task");
-
-        if(tasks.length === 0){
+        // const [tasks] : any = await pool.query("Select * From Task");
+        const tasks : any = await prisma.task.findMany();
+        
+        if(!tasks){
             return (
                 <p style={{ color: "red" }}>
                     Tasks not loaded.
@@ -21,16 +25,18 @@ export default async function Tasks(){
                         <th>Description</th>
                         <th>Completed</th>
                         <th>User Id</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map((task : any)=>(
-                        <tr key={task.TaskId}>
-                            <td>{task.TaskId}</td>
-                            <td>{task.TaskTitle}</td>
-                            <td>{task.TaskDescription}</td>
-                            <td>{task.IsCompleted}</td>
-                            <td>{task.UserId}</td>
+                    {tasks.map((task : task)=>(
+                        <tr key={task.id}>
+                            <td>{task.id}</td>
+                            <td>{task.title}</td>
+                            <td>{task.description}</td>
+                            <td>{task.isCompleted}</td>
+                            <td>{task.userId}</td>
+                            <Link href={`/tasks/${task.id}`}>Detail</Link>
                         </tr>
                     ))}
                 </tbody>

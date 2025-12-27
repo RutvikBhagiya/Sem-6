@@ -1,9 +1,10 @@
 import pool from "@/lib/db";
 import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 
 export default async function ProductDetail({params} : {params:{id:string}}){
 
-  const {id} = params;
+  const {id} = await params;
 
   try{
     const product  = await prisma.product.findUnique({
@@ -20,7 +21,8 @@ export default async function ProductDetail({params} : {params:{id:string}}){
         );
     }
     return(
-      <table border={1} cellPadding={10}>
+      <>
+        <table border={1} cellPadding={10}>
         <tbody>
           <tr>
             <th>ID</th>
@@ -44,6 +46,8 @@ export default async function ProductDetail({params} : {params:{id:string}}){
           </tr>
         </tbody>
       </table>
+      <Link href={"/products"} className="m-5">Back</Link>
+      </>
     )
   }
   catch(error){
