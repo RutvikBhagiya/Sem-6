@@ -16,6 +16,7 @@ UserID INT,
 FOREIGN KEY (UserID) REFERENCES users(UserID)
 );
 
+
 INSERT INTO users (UserName, Password) VALUES
 ('Chirag', '1234'),
 ('Lallu', '5678');
